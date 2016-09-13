@@ -258,3 +258,203 @@ export default function usersLikes (state = initialState, action) {
       return state
   }
 }
+
+/* =======================================================
+Like Count
+========================================================= */
+
+function count (state = 0, action) {
+  switch (action.type) {
+    case ADD_LIKE:
+      return state + 1
+    case REMOVE_LIKE:
+      return state - 1
+    default:
+      return state
+  }
+}
+
+const intitalState = {
+  isFetching: false,
+  error: ''
+}
+
+export default function likeCount (state = initialState) {
+  switch (action.type) {
+    case FETCHING_COUNT:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case FETCHING_COUNT_ERROR:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error
+      }
+    case FETCHING_COUNT_SUCCESS:
+      return {
+        ...state,
+        ...intialState,
+        [action.duckId]: action.count
+      }
+    case ADD_LIKE:
+    case REMOVE_LIKE:
+      return typeof state[action.duckId] === 'undefined'
+      ? state
+      : {
+        ...state,
+        [action.duckId]: count(state[action.duckId], action)
+      }
+    default:
+      return state
+
+  }
+}
+
+/* =======================================================
+ Users Ducks
+========================================================= */
+
+const intitalUsersDuckState = {
+  lastUpdated: 0,
+  duckIds: []
+}
+
+const usersDuck = (state = initialUsersDuckState, action) => {
+  switch (action.type) {
+    case ADD_SINGLE_USERS_DUCK:
+      return {
+        ...state,
+        duckIds: state.duckIds.concat([action.duckId])
+      }
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  isFetching: true,
+  error: ''
+}
+
+export default function userDucks (state = intialState) {
+  switch (action.type) {
+    case FETCHING_USERS_DUCKS:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case FETCHING_USERS_DUCKS_ERROR:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error
+      }
+    case FETCHING_USERS_DUCKS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: '',
+        [action.uid]: {
+          lastUpdated: action.lastUpdated,
+          duckids: action.duckIds
+        }
+      }
+    case ADD_SINGLE_USERS_DUCK:
+      return typeof state[action.uid] === 'undefined'
+        ? state
+        : {
+          ...state,
+          isFetching: false,
+          error: '',
+          [action.uid]: usersDuck(state[action.uid], action)
+        }
+    default:
+      return state
+
+  }
+}
+
+/* =======================================================
+ Replies
+========================================================= */
+
+const initialReply = {
+  name: '',
+  reply: '',
+  uid: '',
+  timestamp: 0,
+  avatar: '',
+  replyId: ''
+}
+
+const duckReplies = (state = initialReply, action) => {
+  switch (action.type) {
+    case ADD_REPLY:
+      return {
+        ...state,
+        [action.reply.replyId]: action.reply
+      }
+    case REMOVE_REPLY:
+      return {
+        ...state,
+        [action.reply.replyId]: undefined
+      }
+    default:
+      return state
+  }
+}
+
+const initialDuckState = {
+  lastUpdated: Date.now(),
+  replies: {}
+}
+
+const repliesAndLastUpdated = (state = initialDuckState, action) => {
+  switch (action.type) {
+    case FETCHING_REPLIES_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        replies: action.applies
+      }
+      case ADD_REPLY:
+      case FETCHING_REPLIES_SUCCESS:
+      case REMOVE_REPLY:
+        return {
+          ...state,
+          replies: duckReplies(state.replies, action)
+        }
+    default:
+      return state
+  }
+}
+
+export default function replies (state = intialState, action) {
+  switch (action.type) {
+    case FETCHING_REPLIES:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case FETCHING_REPLIES_ERROR:
+    case ADD_REPLY_ERROR:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error
+      }
+    case ADD_REPLY:
+    case FETCHING_REPLIES_SUCCESS:
+    case REMOVE_REPLY:
+      return {
+        ...state,
+        isFecthing: false,
+        error: '',
+        [action.duckId]: repliesAndLastUpdated(state[action.duckId], action)
+      }
+    default:
+      return state
+  }
+}

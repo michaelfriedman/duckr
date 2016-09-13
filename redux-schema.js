@@ -32,30 +32,37 @@ modal: {
         }
       }
     },
+    likeCount: {
+      [duckId]: 0
+    },
     usersDucks: {
       [uid]: {
         isFetching,
         error,
-
-        lastUpdated,
-        duckIds: [duckId, duckId, duckId]
+        [uid]: {
+          lastUpdated,
+          duckIds: [duckId, duckId, duckId]
       }
     },
-    likeCount: {
-      [duckId]: 0
-    },
     usersLikes: {
-      [duckId]: true
+      duckId: true
     },
+    feed: {
+      isFetching,
+      error,
+      newDucksAvailable,
+      duckIdsToAddL [duckId, duckId],
+      duckIds: [duckId, duckId]
+    }
     replies: {
       isFetching,
       error,
       [duckId]: {
+        lastUpdated,
         replies: {
-          lastUpdated,
-          replyId: {
+          [replyId]: {
             name,
-            commment,
+            reply,
             uid,
             timestamp,
             avatar
@@ -65,12 +72,5 @@ modal: {
     },
     listeners: {
       [listenerId]: true
-    },
-    feed: {
-      isFetching,
-      error,
-      newDucksAvailable,
-      duckIdsToAddL [duckId, duckId],
-      duckIds: [duckId, duckId]
     }
-}
+  }
