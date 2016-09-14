@@ -419,13 +419,13 @@ const repliesAndLastUpdated = (state = initialDuckState, action) => {
         lastUpdated: action.lastUpdated,
         replies: action.applies
       }
-      case ADD_REPLY:
-      case FETCHING_REPLIES_SUCCESS:
-      case REMOVE_REPLY:
-        return {
-          ...state,
-          replies: duckReplies(state.replies, action)
-        }
+    case ADD_REPLY:
+    case FETCHING_REPLIES_SUCCESS:
+    case REMOVE_REPLY:
+      return {
+        ...state,
+        replies: duckReplies(state.replies, action)
+      }
     default:
       return state
   }
