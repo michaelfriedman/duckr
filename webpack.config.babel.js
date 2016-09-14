@@ -13,7 +13,7 @@ const PATHS = {
 }
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html',
+  template: PATHS.app + '/index.html',
   filename: 'index.html',
   inject: 'body'
 })
@@ -35,7 +35,7 @@ const base = {
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-      {test: /\.css$/, loader: 'style!css?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:5]'}
+      {test: /\.css$/, loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]'}
     ]
   },
   resolve: {

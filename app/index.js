@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import routes from './config/routes'
+import routes from 'config/routes'
 import Raven from 'raven-js'
 
 const sentryKey = '5f26c9d7813f49309839a6850bc93cca'
