@@ -4,7 +4,7 @@ const FETCHING_USER = 'FETCHING_USER'
 const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE'
 const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS'
 
-export function authUser (uid) {  
+export function authUser (uid) {
   return {
     type: AUTH_USER,
     uid
