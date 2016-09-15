@@ -1,21 +1,11 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  composes: centeredContainer from 'sharedStyles/styles.css';
 }
 
 .title {
-  color: #4a90e2;
-  font-weight: 100;
-  font-size: 4em;
-  margin-bottom: 20px;
+  composes: largeHeader from 'sharedStyles/styles.css';
 }
 
 .slogan {
-  color: #4a90e2;
-  font-size: 2em;
-  text-align: center;
-  line-height: 3em;
-  font-weight: 100;
+  composes: subHeader from 'sharedStyles/styles.css';
 }
