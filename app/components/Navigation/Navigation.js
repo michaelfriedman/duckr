@@ -17,12 +17,12 @@ function NavLinks ({isAuthed}) {
 function ActionLinks ({isAuthed}) {
   return isAuthed === true
   ? <ul>
-    <li>{`NEW DUCK`}</li>
-    <li><Link to='/logout' className={link}>{`Logout`}</Link></li>
+    <li>NEW DUCK</li>
+    <li><Link to='/logout' className={link}>{'Logout'}</Link></li>
   </ul>
   : <ul>
-    <li><Link to='/' className={link}>{`Home`}</Link></li>
-    <li><Link to='/auth' className={link}>{`Authenticate`}</Link></li>
+    <li><Link to='/' className={link}>{'Home'}</Link></li>
+    <li><Link to='/auth' className={link}>{'Authenticate'}</Link></li>
   </ul>
 }
 
