@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { container, title, slogan } from './styles.css'
 
-export default function Home (props) {
+export default function Home () {
   return (
     <div className={container}>
       <p className={title}>{`Duckr`}</p>
@@ -10,4 +10,4 @@ export default function Home (props) {
       <p className={slogan}>{`Coded by Michael Friedman from ReactJSProgram.com`}</p>
     </div>
   )
-};
+}
