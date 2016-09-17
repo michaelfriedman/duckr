@@ -3,7 +3,7 @@ export default function auth () {
     setTimeout(() => resolve({
       name: 'Michael Friedman',
       avatar: 'https://avatars2.githubusercontent.com/u/17555926?v=3&s=400',
-      uid: 'the-uid'
+      uid: 'michaelfriedman'
     }), 2000)
   })
 }
