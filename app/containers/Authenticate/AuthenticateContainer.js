@@ -11,32 +11,26 @@ const AuthenticateContainer = React.createClass({
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired
   },
-  handleAuth () {
+  contextTypes: {
+    router: PropTypes.object.isRequired
+  },
+  handleAuth (e) {
+    e.preventDefault()
     this.props.fetchAndHandleAuthedUser()
+    .then(() => this.context.router.replace('feed'))
   },
   render () {
     return (
       <Authenticate
+        onAuth={this.handleAuth}
         isFetching={this.props.isFetching}
         error={this.props.error}
-        onAuth={this.handleAuth} />
+         />
     )
   }
 })
 
-function mapStateToProps (state) {
-  console.log('STATE', state)
-  return {
-    isFetching: state.isFetching,
-    error: state.error
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators(userActionCreators, dispatch)
-}
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  (state) => ({isFetching: state.isFetching, error: state.error}),
+  (dispatch) => bindActionCreators(userActionCreators, dispatch)
 )(AuthenticateContainer)
