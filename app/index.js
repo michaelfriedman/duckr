@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import routes from 'config/routes'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import users from 'redux/modules/users'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import Raven from 'raven-js'
 
 const store = createStore(users)

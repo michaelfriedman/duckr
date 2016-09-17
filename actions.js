@@ -1,5 +1,3 @@
-// users
-
 {
   type: AUTH_USER,
   uid
@@ -38,7 +36,7 @@
 
 {
   type: FETCHING_DUCK_SUCCESS,
-  duck,
+  duck
 }
 
 {
@@ -150,7 +148,7 @@
 {
   type: FETCHING_COUNT_SUCCESS,
   duckId,
-  count,
+  count
 }
 
 // User's Ducks
@@ -191,7 +189,7 @@
 
 {
   type: FETCHING_USERS_LIKES_SUCCESS,
-  likes,
+  likes
 }
 
 {
