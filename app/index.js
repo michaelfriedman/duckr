@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import routes from 'config/routes'
+import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 import users from 'redux/modules/users'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
 import Raven from 'raven-js'
 
-const store = createStore(users)
+const store = createStore(users, applyMiddleware(thunk))
 
 const sentryKey = '5f26c9d7813f49309839a6850bc93cca'
 const sentryApp = '98798'
