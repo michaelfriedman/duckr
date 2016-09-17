@@ -8,7 +8,6 @@ const MainContainer = React.createClass({
     isAuthed: PropTypes.bool.isRequired
   },
   render () {
-    console.log('Props', this.props)
     return (
       <div className={container}>
         <Navigation isAuthed={this.props.isAuthed} />

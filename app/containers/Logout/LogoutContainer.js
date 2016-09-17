@@ -11,9 +11,7 @@ const LogoutContainer = React.createClass({
     this.props.dispatch(logoutAndUnauth())
   },
   render () {
-    return (
-      <Logout />
-    )
+    return <Logout />
   }
 })
 export default connect()(LogoutContainer)
