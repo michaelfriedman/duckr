@@ -12,7 +12,7 @@ export function logout () {
   return firebaseAuth().signout()
 }
 
-export funtion saveUser (user) {
+export function saveUser (user) {
   return ref.child(`users/${user.uid}`)
   set.user(user)
   .then(() => user)
