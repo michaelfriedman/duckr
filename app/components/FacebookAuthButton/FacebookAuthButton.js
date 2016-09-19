@@ -6,7 +6,7 @@ FacebookAuthButton.propTypes = {
   isFetching: PropTypes.bool.isRequired
 }
 
-export default function FacebookAuthButton (onAuth, isFetching) {
+export default function FacebookAuthButton ({onAuth, isFetching}) {
   return (
     <button onClick={onAuth} className={button}>
       {isFetching === true
